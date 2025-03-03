@@ -4,22 +4,39 @@
 
 #include <stdio.h>
 
-int main (void) {
+void inputMatrix(int n, int a[n][n], int b[n][n]) {
+
+}
+
+void validate() {
+	return 0;
+}
+
+void axb(int n, int a[n][n], int b[n][n], int c[n][n]) {
+	c[0] = a[0][0]*b[0][0] + a[0][1]*b[1][0];
+	c[1] = a[0][0]*b[0][1] + a[0][1]*b[1][1];
+	c[2] = a[1][0]*b[0][0] + a[1][1]*b[1][0];
+	c[3] = a[1][0]*b[0][1] + a[1][1]*b[1][1];	
+
+}
+
+int main (void) { 
 
 	/* variable declarations */
-	int a[] = {0,0,0,0}; 		// a[0]=a11 , a[1]=a12 , a[2]=a21 , a[3]=a22 
-	int b[] = {0,0,0,0}; 		// b[0]=b11 , b[1]=b12 , b[2]=b21 , b[3]=b22 
-	int c[]	= {0,0,0,0};		// resulting matrix from multiplication	
-	int index = 0;		// keep track of array index
-	int pos = 0;		// position within matrix	
-	char arr = 'a';		// track which arr
-	int printed = 0;	// control variable for printing message 
+	int a[2][2] = {0};
+	int b[2][2] = {0}; 		// b[0][0]=b11 , b[0][1]=b12 , b[1][0]=b21 , b[1][1]=b22 
+	int c[2][2]	= {0};		// resulting matrix from multiplication	
+	int n = 2;
+	int index = 0;			// keep track of array index
+	char arr = 'a';		
+	int printed = 0;
 	
 	/* 	Input section 	*/
 	printf("Enter the first matrix(a) that will be multiplied:\n");	
+
+
 	do {
 		if (index == 0 || index == 4){
-			pos = 11;	
 			if (index == 4) {
 				if (!printed) {
 					printf("\nEnter the second matrix(b) that will be multiplied:\n");
@@ -36,7 +53,7 @@ int main (void) {
 		} else if (index == 3 || index == 7 ) {
 			pos = 22; 
 		}
-		printf("%c%d = ", arr, pos);
+		printf("%c%d = ", arr, index);
 
 		int userinput;
 		char term;
@@ -57,11 +74,10 @@ int main (void) {
 
 	} while ( (index != 8) );  	// loop while both matrix have not yet been filled completely   
 
+
 	/* 		Compute 	*/
-	c[0] = a[0]*b[0] + a[1]*b[2];
-	c[1] = a[0]*b[1] + a[1]*b[3];
-	c[2] = a[2]*b[0] + a[3]*b[2];
-	c[3] = a[2]*b[1] + a[3]*b[3];	
+	axb(a, b, c, n);
+
 	/* 		Output 		*/
 	printf("\nResult:\n");
 	printf("%d ", c[0]);	
